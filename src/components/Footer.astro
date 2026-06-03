@@ -3,48 +3,67 @@ import { SITE, waLink } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-[#0F1B2A] text-white/85 px-5 sm:px-8 pt-16 pb-8">
-  <div class="max-w-[1500px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-white/10">
-    <div>
-      <img src="/images/logo-stacked.png" alt={SITE.brandName} class="h-16 w-auto mb-5 opacity-95" width="200" height="86" loading="lazy" />
-      <p class="text-sm leading-relaxed text-white/65 max-w-xs">
-        Island performance wear. Designed in the Caribbean.
-      </p>
+<footer class="bg-[#0F1B2A] text-white/85 px-5 sm:px-8 pt-10 sm:pt-14 lg:pt-16 pb-6 sm:pb-8">
+  <div class="max-w-[1500px] mx-auto">
+    <!-- Logo + tagline (top on mobile/tablet, left column on desktop) -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:hidden">
+      <div>
+        <img src="/images/logo-stacked.png" alt={SITE.brandName}
+             class="h-11 sm:h-12 w-auto mb-2 opacity-95"
+             width="200" height="86" loading="lazy" />
+        <p class="text-[13px] leading-relaxed text-white/65 max-w-xs">
+          Island performance wear. Designed in the Caribbean.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h4 class="text-xs tracking-widest uppercase font-semibold text-white mb-4">Shop</h4>
-      <ul class="space-y-2.5 list-none p-0 m-0">
-        <li><a href="/collections/swim" class="text-sm text-white/70 hover:text-white transition-colors">Swim</a></li>
-        <li><a href="/collections/apparel" class="text-sm text-white/70 hover:text-white transition-colors">Apparel</a></li>
-        <li><a href="/collections/caps" class="text-sm text-white/70 hover:text-white transition-colors">Caps</a></li>
-        <li><a href="/collections/shoes" class="text-sm text-white/70 hover:text-white transition-colors">Footwear</a></li>
-        <li><a href="/collections/accessories" class="text-sm text-white/70 hover:text-white transition-colors">Accessories</a></li>
-      </ul>
+    <!-- Menu columns -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 pb-8 lg:pb-12 border-b border-white/10">
+      <!-- Logo (desktop only — on mobile we show at top instead) -->
+      <div class="hidden lg:block">
+        <img src="/images/logo-stacked.png" alt={SITE.brandName}
+             class="h-14 w-auto mb-4 opacity-95"
+             width="200" height="86" loading="lazy" />
+        <p class="text-sm leading-relaxed text-white/65 max-w-xs">
+          Island performance wear.<br/>Designed in the Caribbean.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-[11px] tracking-widest uppercase font-semibold text-white mb-3 sm:mb-4">Shop</h4>
+        <ul class="space-y-2 sm:space-y-2.5 list-none p-0 m-0">
+          <li><a href="/collections/swim" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Swim</a></li>
+          <li><a href="/collections/apparel" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Apparel</a></li>
+          <li><a href="/collections/caps" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Caps</a></li>
+          <li><a href="/collections/shoes" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Footwear</a></li>
+          <li><a href="/collections/accessories" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Accessories</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-[11px] tracking-widest uppercase font-semibold text-white mb-3 sm:mb-4">Find Us</h4>
+        <ul class="space-y-2 sm:space-y-2.5 list-none p-0 m-0">
+          <li><a href="/find-us" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Retail</a></li>
+          <li><a href="/wholesale" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Wholesale</a></li>
+          <li><a href="/about" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">About</a></li>
+          <li><a href="/contact" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-span-2 lg:col-span-1">
+        <h4 class="text-[11px] tracking-widest uppercase font-semibold text-white mb-3 sm:mb-4">Get In Touch</h4>
+        <ul class="space-y-2 sm:space-y-2.5 list-none p-0 m-0">
+          <li><a href={waLink()} target="_blank" rel="noopener" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">WhatsApp · {SITE.whatsapp.displayName}</a></li>
+          <li><a href={`mailto:${SITE.email}`} class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors break-all">{SITE.email}</a></li>
+          <li><a href={SITE.instagramUrl} target="_blank" rel="noopener" class="text-[13px] sm:text-sm text-white/70 hover:text-white transition-colors">@{SITE.instagram}</a></li>
+        </ul>
+      </div>
     </div>
 
-    <div>
-      <h4 class="text-xs tracking-widest uppercase font-semibold text-white mb-4">Find Us</h4>
-      <ul class="space-y-2.5 list-none p-0 m-0">
-        <li><a href="/find-us" class="text-sm text-white/70 hover:text-white transition-colors">Retail locations</a></li>
-        <li><a href="/wholesale" class="text-sm text-white/70 hover:text-white transition-colors">Wholesale inquiries</a></li>
-        <li><a href="/about" class="text-sm text-white/70 hover:text-white transition-colors">About</a></li>
-        <li><a href="/contact" class="text-sm text-white/70 hover:text-white transition-colors">Contact</a></li>
-      </ul>
+    <!-- Bottom row -->
+    <div class="flex flex-col sm:flex-row justify-between gap-2 mt-5 sm:mt-6 text-[11px] sm:text-xs text-white/50">
+      <span>© {year} {SITE.brandFull} · MD United Group LLC</span>
+      <span>Made with love in the Caribbean 🐟</span>
     </div>
-
-    <div>
-      <h4 class="text-xs tracking-widest uppercase font-semibold text-white mb-4">Get In Touch</h4>
-      <ul class="space-y-2.5 list-none p-0 m-0">
-        <li><a href={waLink()} target="_blank" rel="noopener" class="text-sm text-white/70 hover:text-white transition-colors">WhatsApp · {SITE.whatsapp.displayName}</a></li>
-        <li><a href={`mailto:${SITE.email}`} class="text-sm text-white/70 hover:text-white transition-colors">{SITE.email}</a></li>
-        <li><a href={SITE.instagramUrl} target="_blank" rel="noopener" class="text-sm text-white/70 hover:text-white transition-colors">@{SITE.instagram}</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="max-w-[1500px] mx-auto flex flex-col sm:flex-row justify-between gap-3 mt-8 text-xs text-white/50">
-    <span>© {year} {SITE.brandFull} · MD United Group LLC</span>
-    <span>Made with love in the Caribbean 🐟</span>
   </div>
 </footer>
