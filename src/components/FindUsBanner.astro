@@ -6,34 +6,27 @@ const kimpton = SITE.retailers.find((r) => r.name === 'Island Shop');
 
 <section class="bg-(--color-cream) px-5 sm:px-8 py-14 lg:py-20">
   <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-    <!-- LEFT: heading + description + CTA -->
+    <!-- LEFT: heading + description -->
     <div>
       <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">Find Us In Person</p>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5">
         Visit our retailers across Roatán.
       </h2>
-      <p class="text-[15px] sm:text-base text-[#444] leading-relaxed mb-8 max-w-md">
+      <p class="text-[15px] sm:text-base text-[#444] leading-relaxed max-w-md">
         VIANY.DIXON® apparel and souvenirs available at our partner locations across the Bay Islands.
       </p>
-      <a href="/find-us" class="btn btn-primary">All Locations</a>
     </div>
 
     <!-- RIGHT: Island Shop card (only) -->
     <div>
       {kimpton && (
         <article class="bg-white border border-(--color-line) p-6 lg:p-8">
-          <p class="text-[10px] tracking-[0.18em] uppercase font-bold mb-2 text-(--color-gold)">{kimpton.name}</p>
-          <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.01em] mb-4">{kimpton.venue}</h3>
-          <p class="text-sm text-(--color-muted) mb-1.5 flex items-start gap-2">
+          <h3 class="text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-[-0.015em] leading-[1.05] mb-2 text-(--color-gold)">{kimpton.name}</h3>
+          <p class="text-base sm:text-lg font-medium tracking-[-0.01em] mb-5 text-(--color-ink)">at {kimpton.venue}</p>
+          <p class="text-sm text-(--color-muted) mb-6 flex items-start gap-2">
             <span class="shrink-0">📍</span>
             <span>{kimpton.address}</span>
           </p>
-          {kimpton.phone && (
-            <p class="text-sm text-(--color-muted) mb-5 flex items-start gap-2">
-              <span class="shrink-0">📞</span>
-              <a href={`tel:${kimpton.phone.replace(/\s/g, '')}`} class="hover:underline">{kimpton.phone}</a>
-            </p>
-          )}
           <a href={kimpton.mapsUrl} target="_blank" rel="noopener"
              class="inline-block text-[12px] font-bold tracking-[0.12em] uppercase border-b-2 border-(--color-ink) pb-0.5 hover:opacity-70 transition-opacity">
             Get Directions
