@@ -28,14 +28,6 @@ export const SITE = {
       phone: '+504 2405-1001',
       mapsUrl: 'https://maps.google.com/?q=Kimpton+Grand+Roatan+Resort+Spa',
     },
-    {
-      name: 'Island Outfitters Pop-Up',
-      venue: 'Juan Manuel Gálvez International Airport',
-      address: 'Gate D5–D6, Coxen Hole, Roatán, Honduras',
-      phone: '',
-      mapsUrl: 'https://maps.google.com/?q=Juan+Manuel+Galvez+International+Airport+Roatan',
-      hours: '7:00 AM — 7:00 PM Daily',
-    },
   ],
 
   // Navigation — replicates Shopify header exactly

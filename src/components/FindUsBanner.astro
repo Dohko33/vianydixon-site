@@ -1,37 +1,45 @@
 ---
-// Find Us — Roatán Airport pop-up (matches Shopify findus section)
+// Find Us — Island Shop @ Kimpton (single retailer, left-text + right-card layout)
+import { SITE } from '../data/site';
+const kimpton = SITE.retailers.find((r) => r.name === 'Island Shop');
 ---
 
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0">
-    <img src="/images/findus-airport.png" alt="" class="w-full h-full object-cover" loading="lazy" />
-    <div class="absolute inset-0 bg-black/55"></div>
-  </div>
-
-  <div class="relative max-w-[1300px] mx-auto px-5 sm:px-8 py-16 lg:py-24 text-white">
-    <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-white/80">Find Us In Person</p>
-    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5 max-w-2xl">
-      Visit the pop-up at Roatán Airport.
-    </h2>
-    <p class="text-base sm:text-lg text-white/85 leading-relaxed mb-8 max-w-2xl">
-      Island Outfitters by VIANY.DIXON® — high-quality island apparel and souvenirs right at the Juan Manuel Gálvez International Airport.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-3xl mb-10">
-      <div>
-        <p class="text-[10px] tracking-[0.18em] uppercase font-bold text-white/60 mb-2">Location</p>
-        <p class="text-sm sm:text-base">RTB Airport · Gate D5–D6</p>
-      </div>
-      <div>
-        <p class="text-[10px] tracking-[0.18em] uppercase font-bold text-white/60 mb-2">Hours</p>
-        <p class="text-sm sm:text-base">7:00 AM — 7:00 PM Daily</p>
-      </div>
-      <div>
-        <p class="text-[10px] tracking-[0.18em] uppercase font-bold text-white/60 mb-2">City</p>
-        <p class="text-sm sm:text-base">Coxen Hole, Roatán · Honduras</p>
-      </div>
+<section class="bg-(--color-cream) px-5 sm:px-8 py-14 lg:py-20">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <!-- LEFT: heading + description + CTA -->
+    <div>
+      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">Find Us In Person</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5">
+        Visit our retailers across Roatán.
+      </h2>
+      <p class="text-[15px] sm:text-base text-[#444] leading-relaxed mb-8 max-w-md">
+        VIANY.DIXON® apparel and souvenirs available at our partner locations across the Bay Islands.
+      </p>
+      <a href="/find-us" class="btn btn-primary">All Locations</a>
     </div>
 
-    <a href="/find-us" class="btn" style="background:white;color:#000;">Get Directions</a>
+    <!-- RIGHT: Island Shop card (only) -->
+    <div>
+      {kimpton && (
+        <article class="bg-white border border-(--color-line) p-6 lg:p-8">
+          <p class="text-[10px] tracking-[0.18em] uppercase font-bold mb-2 text-(--color-gold)">{kimpton.name}</p>
+          <h3 class="text-xl sm:text-2xl font-medium tracking-[-0.01em] mb-4">{kimpton.venue}</h3>
+          <p class="text-sm text-(--color-muted) mb-1.5 flex items-start gap-2">
+            <span class="shrink-0">📍</span>
+            <span>{kimpton.address}</span>
+          </p>
+          {kimpton.phone && (
+            <p class="text-sm text-(--color-muted) mb-5 flex items-start gap-2">
+              <span class="shrink-0">📞</span>
+              <a href={`tel:${kimpton.phone.replace(/\s/g, '')}`} class="hover:underline">{kimpton.phone}</a>
+            </p>
+          )}
+          <a href={kimpton.mapsUrl} target="_blank" rel="noopener"
+             class="inline-block text-[12px] font-bold tracking-[0.12em] uppercase border-b-2 border-(--color-ink) pb-0.5 hover:opacity-70 transition-opacity">
+            Get Directions
+          </a>
+        </article>
+      )}
+    </div>
   </div>
 </section>
