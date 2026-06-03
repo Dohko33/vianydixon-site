@@ -1,0 +1,30 @@
+---
+const cats = [
+  { label: 'Swim',        href: '/collections/swim',        bg: '#D9C9B5', img: '/images/bikini-reef-turquesa-1.png',    fit: 'cover'   },
+  { label: 'Rashguard',   href: '/collections/apparel',     bg: '#9BB5C7', img: '/images/rashguard-navy-cutout.png',     fit: 'contain' },
+  { label: 'Caps',        href: '/collections/caps',        bg: '#E8DBC4', img: '/images/cap-navy-cutout.png',           fit: 'contain' },
+  { label: 'Footwear',    href: '/collections/shoes',       bg: '#C9CDD4', img: '/images/slipon-crystal-pewter-cutout.png', fit: 'contain' },
+  { label: 'Sportswear',  href: '/collections/sportswear',  bg: '#D4B5AC', img: '/images/sportswear-hero.jpg',           fit: 'cover'   },
+  { label: 'Accessories', href: '/collections/accessories', bg: '#B8C5B5', img: '/images/water-bottle-teal-cutout.png',  fit: 'contain' },
+];
+---
+
+<section class="py-6 lg:py-10 bg-white">
+  <div class="max-w-[1500px] mx-auto">
+    <h2 class="text-[28px] sm:text-4xl lg:text-[48px] font-medium tracking-[-0.025em] leading-[1.05] mb-5 lg:mb-7 px-5 sm:px-8">
+      From Roatán to the World
+    </h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-0">
+      {cats.map((c) => (
+        <a href={c.href} class="block group">
+          <div class="aspect-square overflow-hidden relative" style={`background-color:${c.bg};` + (c.fit === 'contain' ? 'padding:12px 12px 12px 12px;' : '')}>
+            <img src={c.img} alt={c.label} loading="lazy"
+                 class={`w-full h-full transition-transform duration-700 group-hover:scale-[1.04] ${c.fit === 'cover' ? 'object-cover' : 'object-contain'}`} />
+          </div>
+          <p class="text-center text-[15px] sm:text-[17px] mt-3 mb-3">{c.label}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

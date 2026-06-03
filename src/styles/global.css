@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — same as Shopify theme */
+  --color-ink: #000000;
+  --color-bg: #FFFFFF;
+  --color-muted: #6B6B6B;
+  --color-line: #E5E5E5;
+  --color-accent: #C8102E;       /* About Us / sale red */
+  --color-cream: #FAF7F0;
+  --color-sand: #F4F1ED;
+  --color-light-gray: #F2F2F2;   /* Featured Products bg */
+  --color-navy: #0A2240;         /* Kimpton navy */
+  --color-gold: #B18E5A;         /* Champagne accent */
+  --color-turquoise: #5FB2AF;
+
+  --font-sans: 'Sofia Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Sofia Sans + Cormorant Garamond via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+html { font-family: var(--font-sans); color: var(--color-ink); background: var(--color-bg); }
+body { font-family: var(--font-sans); }
+
+/* Smooth reveal on scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .vd-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .vd-reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s, background 0.2s, color 0.2s; cursor: pointer; }
+.btn-primary { background: var(--color-ink); color: white; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost { background: transparent; color: var(--color-ink); border: 2px solid var(--color-ink); }
+.btn-ghost:hover { background: var(--color-ink); color: white; }
+.btn-whatsapp { background: #25D366; color: white; }
+.btn-whatsapp:hover { background: #1ebe5a; }

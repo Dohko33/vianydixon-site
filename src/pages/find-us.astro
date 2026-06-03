@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout title="Find Us" description="Visit VIANY.DIXON at the Kimpton Grand Roatán Island Shop and our retail partners across the Bay Islands.">
+  <section class="px-5 sm:px-8 py-16 lg:py-24">
+    <div class="max-w-[1200px] mx-auto">
+      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">Find Us In Person</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.025em] leading-[1.05] mb-5">
+        Where to shop our collections.
+      </h1>
+      <p class="text-base sm:text-lg text-(--color-muted) mb-12 max-w-2xl">
+        VIANY.DIXON® apparel, swim and accessories available at these partner locations across Roatán and the Bay Islands.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {SITE.retailers.map((r) => (
+          <article class="bg-(--color-cream) border border-(--color-line) p-8 lg:p-10">
+            <p class="text-[10px] tracking-[0.18em] uppercase font-bold mb-2 text-(--color-gold)">{r.name}</p>
+            <h2 class="text-2xl lg:text-3xl font-medium tracking-[-0.01em] mb-5">{r.venue}</h2>
+            <dl class="space-y-2.5 mb-7">
+              <div>
+                <dt class="sr-only">Address</dt>
+                <dd class="text-sm">📍 {r.address}</dd>
+              </div>
+              {r.hours && (
+                <div>
+                  <dt class="sr-only">Hours</dt>
+                  <dd class="text-sm">🕘 {r.hours}</dd>
+                </div>
+              )}
+              {r.phone && (
+                <div>
+                  <dt class="sr-only">Phone</dt>
+                  <dd class="text-sm">📞 <a href={`tel:${r.phone.replace(/\s/g, '')}`} class="hover:underline">{r.phone}</a></dd>
+                </div>
+              )}
+            </dl>
+            <a href={r.mapsUrl} target="_blank" rel="noopener" class="btn btn-ghost">Get Directions</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

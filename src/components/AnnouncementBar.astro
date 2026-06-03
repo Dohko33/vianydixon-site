@@ -1,0 +1,32 @@
+---
+const messages = [
+  '🚢 Shipping from Roatán across Honduras',
+  '🏝️ Find us at the Kimpton Grand Roatán Island Shop',
+  '☀️ UPF 50+ certified swim & rashguards',
+];
+---
+
+<div class="text-center py-2.5 text-[12px] tracking-[0.04em] font-medium overflow-hidden" style="background:#F2F2F2;color:#000;">
+  <div class="max-w-[1500px] mx-auto px-5 sm:px-8">
+    <div class="relative h-[18px]" data-vd-ann-rotate>
+      {messages.map((m, i) => (
+        <p class="absolute inset-0 flex items-center justify-center transition-opacity duration-500" data-vd-ann-msg style={`opacity:${i === 0 ? 1 : 0}`}>{m}</p>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var track = document.querySelector('[data-vd-ann-rotate]');
+    if (!track) return;
+    var msgs = track.querySelectorAll('[data-vd-ann-msg]');
+    if (msgs.length < 2) return;
+    var i = 0;
+    setInterval(function () {
+      msgs[i].style.opacity = '0';
+      i = (i + 1) % msgs.length;
+      msgs[i].style.opacity = '1';
+    }, 5000);
+  })();
+</script>

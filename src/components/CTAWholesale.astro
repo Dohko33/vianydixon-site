@@ -1,0 +1,22 @@
+---
+import { SITE, waLink } from '../data/site';
+const msg = encodeURIComponent('Hello, I would like to inquire about wholesale for VIANY.DIXON');
+---
+
+<section class="bg-(--color-ink) text-white px-5 sm:px-8 py-14 lg:py-20">
+  <div class="max-w-[1100px] mx-auto text-center">
+    <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-white/70">Wholesale &amp; Stockists</p>
+    <h2 class="font-serif italic text-3xl sm:text-4xl lg:text-5xl font-normal tracking-[-0.015em] leading-[1.05] mb-5">
+      Carry VIANY.DIXON® in your store.
+    </h2>
+    <p class="text-[15px] text-white/80 leading-relaxed mb-8 max-w-xl mx-auto">
+      Boutique hotels, resort shops, and lifestyle retailers across Latin America and beyond.
+      Request our linesheet and lead times.
+    </p>
+    <div class="flex gap-3 flex-wrap justify-center">
+      <a href={`https://wa.me/${SITE.whatsapp.number}?text=${msg}`} target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp Inquiry</a>
+      <a href={`mailto:${SITE.emailWholesale}?subject=Wholesale%20Inquiry%20%E2%80%93%20VIANY.DIXON`} class="btn btn-ghost" style="border-color:white;color:white;">Email</a>
+      <a href="/wholesale" class="btn" style="background:white;color:#000;">Wholesale Form</a>
+    </div>
+  </div>
+</section>

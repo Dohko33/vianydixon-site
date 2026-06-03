@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, waLink } from '../data/site';
+const waMsg = encodeURIComponent('Hello, I am interested in wholesale for VIANY.DIXON. Could you share your linesheet?');
+---
+
+<BaseLayout title="Wholesale" description="Carry VIANY.DIXON® at your boutique, hotel or resort shop. Request our linesheet and lead times.">
+  <section class="px-5 sm:px-8 py-16 lg:py-24">
+    <div class="max-w-[1100px] mx-auto">
+      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">For Stockists</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.025em] leading-[1.05] mb-6">
+        Carry VIANY.DIXON®<br/>in your store.
+      </h1>
+      <p class="text-base sm:text-lg text-(--color-muted) mb-12 max-w-2xl">
+        Boutique hotels, resort shops, surf shacks and lifestyle retailers across Latin America and beyond.
+        Tell us about your store and we'll send you our linesheet, MOQs and lead times.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+        <div class="bg-(--color-cream) p-6 border border-(--color-line)">
+          <p class="text-3xl font-medium mb-2">01</p>
+          <h3 class="text-base font-bold mb-2">Submit form</h3>
+          <p class="text-sm text-(--color-muted)">Tell us about your store and customer base.</p>
+        </div>
+        <div class="bg-(--color-cream) p-6 border border-(--color-line)">
+          <p class="text-3xl font-medium mb-2">02</p>
+          <h3 class="text-base font-bold mb-2">We send linesheet</h3>
+          <p class="text-sm text-(--color-muted)">Within 48 hours — pricing, MOQs and lead times.</p>
+        </div>
+        <div class="bg-(--color-cream) p-6 border border-(--color-line)">
+          <p class="text-3xl font-medium mb-2">03</p>
+          <h3 class="text-base font-bold mb-2">Place first order</h3>
+          <p class="text-sm text-(--color-muted)">Production from Roatán, delivered to your door.</p>
+        </div>
+      </div>
+
+      <form action="https://formspree.io/f/REPLACE-WITH-FORMSPREE-ID" method="POST" class="bg-(--color-cream) p-8 lg:p-10 space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-name">Your Name</label>
+            <input type="text" id="ws-name" name="name" required class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-business">Business Name</label>
+            <input type="text" id="ws-business" name="business" required class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-email">Email</label>
+            <input type="email" id="ws-email" name="email" required class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-country">Country / City</label>
+            <input type="text" id="ws-country" name="country" required class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-type">Store type</label>
+          <select id="ws-type" name="store_type" class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors">
+            <option>Boutique hotel / resort</option>
+            <option>Lifestyle / fashion boutique</option>
+            <option>Surf / beach shop</option>
+            <option>Online retailer</option>
+            <option>Department store</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-website">Website / Instagram</label>
+          <input type="text" id="ws-website" name="website" class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-[11px] tracking-[0.12em] uppercase font-bold mb-2" for="ws-message">Tell us about your store</label>
+          <textarea id="ws-message" name="message" rows="5" class="w-full px-4 py-3 border border-(--color-line) bg-white text-sm focus:border-(--color-ink) outline-none transition-colors resize-y" placeholder="Customer base, categories you'd like to carry, expected order volume..."></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <button type="submit" class="btn btn-primary">Request Linesheet</button>
+          <a href={`https://wa.me/${SITE.whatsapp.number}?text=${waMsg}`} target="_blank" rel="noopener" class="btn btn-whatsapp">Or WhatsApp Us</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

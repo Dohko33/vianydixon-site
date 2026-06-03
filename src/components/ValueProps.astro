@@ -1,0 +1,45 @@
+---
+const props = [
+  { icon: 'sun',  title: 'UPF 50+ Certified',   sub: 'Independently tested' },
+  { icon: 'ship', title: 'Roatán to the World', sub: 'Honduras-based shipping' },
+  { icon: 'leaf', title: 'Conscious Materials', sub: 'Made with care' },
+  { icon: 'palm', title: 'Designed in Roatán',  sub: 'Made for island life' },
+];
+---
+
+<section class="bg-white border-y border-(--color-line) py-5 sm:py-7 lg:py-10 px-2 sm:px-8">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-4 gap-2 sm:gap-6 lg:gap-10">
+    {props.map((p) => (
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-1.5 sm:mb-3 text-(--color-ink) vp-icon">
+          {p.icon === 'sun' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px] sm:w-8 sm:h-8">
+              <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          )}
+          {p.icon === 'ship' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px] sm:w-8 sm:h-8">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          )}
+          {p.icon === 'leaf' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px] sm:w-8 sm:h-8">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.45 14.42-8.2 17.04z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+            </svg>
+          )}
+          {p.icon === 'palm' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px] sm:w-8 sm:h-8">
+              <path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4"/>
+              <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3"/>
+              <path d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35z"/>
+              <path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14"/>
+            </svg>
+          )}
+        </div>
+        <p class="text-[9px] sm:text-[11px] lg:text-[12px] tracking-[0.08em] sm:tracking-[0.14em] uppercase font-bold mb-1 text-(--color-ink) leading-tight">{p.title}</p>
+        <p class="hidden sm:block text-[11px] lg:text-[12px] text-(--color-muted) leading-relaxed max-w-[180px]">{p.sub}</p>
+      </div>
+    ))}
+  </div>
+</section>

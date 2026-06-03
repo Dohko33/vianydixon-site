@@ -1,0 +1,29 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section class="bg-(--color-cream) px-5 sm:px-8 py-14 lg:py-20">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div>
+      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">Find Us In Person</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5">Visit our retailers across Roatán.</h2>
+      <p class="text-[15px] sm:text-base text-[#444] leading-relaxed mb-8 max-w-md">
+        VIANY.DIXON® apparel and souvenirs available at our partner locations across the Bay Islands.
+      </p>
+      <a href="/find-us" class="btn btn-primary">All Locations</a>
+    </div>
+
+    <div class="space-y-6">
+      {SITE.retailers.map((r) => (
+        <article class="bg-white border border-(--color-line) p-6 lg:p-7">
+          <p class="text-[10px] tracking-[0.18em] uppercase font-bold mb-2 text-(--color-gold)">{r.name}</p>
+          <h3 class="text-xl font-medium tracking-[-0.01em] mb-3">{r.venue}</h3>
+          <p class="text-sm text-(--color-muted) mb-1">📍 {r.address}</p>
+          {r.hours && <p class="text-sm text-(--color-muted) mb-1">🕘 {r.hours}</p>}
+          {r.phone && <p class="text-sm text-(--color-muted) mb-3">📞 {r.phone}</p>}
+          <a href={r.mapsUrl} target="_blank" rel="noopener" class="text-[12px] font-bold tracking-[0.12em] uppercase border-b border-(--color-ink) pb-0.5 hover:opacity-70">Get Directions</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
