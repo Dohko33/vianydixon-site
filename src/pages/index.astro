@@ -3,16 +3,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ValueProps from '../components/ValueProps.astro';
 import CategoryGrid from '../components/CategoryGrid.astro';
+import FeaturedProducts from '../components/FeaturedProducts.astro';
 import BrandStory from '../components/BrandStory.astro';
-import FindUs from '../components/FindUs.astro';
-import CTAWholesale from '../components/CTAWholesale.astro';
+import CapCollection from '../components/CapCollection.astro';
+import FindUsBanner from '../components/FindUsBanner.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import Newsletter from '../components/Newsletter.astro';
 ---
 
 <BaseLayout>
+  <!-- Order matches Shopify live exactly -->
   <Hero />
   <ValueProps />
   <CategoryGrid />
+  <FeaturedProducts />
   <BrandStory />
-  <FindUs />
-  <CTAWholesale />
+  <CapCollection />
+  <FindUsBanner />
+  <Reviews />
+  <FAQ />
+  <Newsletter />
 </BaseLayout>

@@ -1,0 +1,24 @@
+---
+import { waLink } from '../data/site';
+---
+
+<section class="bg-white py-8 lg:py-12 px-5 sm:px-8">
+  <div class="max-w-[1500px] mx-auto bg-[#F2F2F2] text-(--color-ink) overflow-hidden rounded-sm">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="px-5 sm:px-10 lg:px-14 py-12 lg:py-16 flex flex-col justify-center order-2 lg:order-1">
+        <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-4 text-(--color-ink)/70">The Cap Collection</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5 whitespace-pre-line text-(--color-ink)">{`Quality.\nCommunity.\nStyle.`}</h2>
+        <p class="text-(--color-ink)/70 leading-relaxed mb-7 max-w-md text-[15px]">
+          Four colors. One story. Structured trucker caps with the fish mark embroidered on the front — built for the boat, the boardwalk and everywhere in between.
+        </p>
+        <div class="flex gap-3 flex-wrap">
+          <a href="/collections/caps" class="btn btn-primary">Shop Caps</a>
+          <a href={waLink('Hello, I am interested in the cap collection')} target="_blank" rel="noopener" class="btn btn-ghost">See Details</a>
+        </div>
+      </div>
+      <div class="relative aspect-square lg:aspect-auto order-1 lg:order-2 min-h-[400px] lg:min-h-[480px]">
+        <img src="/images/caps-lifestyle-collage.jpg" alt="Cap Collection" class="absolute inset-0 w-full h-full object-cover" width="1500" height="1500" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>

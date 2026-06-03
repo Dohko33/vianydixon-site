@@ -1,0 +1,113 @@
+---
+const reviews = [
+  { quote: "Best swimwear I've ever owned. The fabric is technical but feels luxurious — I wore it snorkeling at sunrise and out to dinner the same day.",
+    name: "Emma S.", location: "Roatán, Honduras" },
+  { quote: "I bought the navy trucker for my husband and ended up wearing it every day myself. The fit is perfect and the quality is unreal.",
+    name: "Lucia M.", location: "Tegucigalpa, Honduras" },
+  { quote: "The crystal slip-ons turn every outfit into an event. Got compliments from total strangers on the boat. Worth every penny.",
+    name: "Daniela R.", location: "Miami, USA" },
+  { quote: "Finally a brand that designs for Caribbean life. Sun protection that doesn't feel like a wetsuit.",
+    name: "Marcus T.", location: "Bay Islands, Honduras" },
+];
+---
+
+<section class="bg-white px-5 sm:px-8 py-14 lg:py-20 overflow-hidden">
+  <div class="max-w-[1500px] mx-auto">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-8 lg:mb-12">
+      <div>
+        <p class="text-[11px] tracking-[0.12em] uppercase font-bold mb-3">Customer Stories</p>
+        <h2 class="text-3xl sm:text-4xl font-medium tracking-[-0.025em] m-0 mb-3">Why Our People Love It</h2>
+        <div class="flex items-center gap-2 text-sm text-(--color-muted)">
+          <div class="flex gap-0.5">
+            {[1,2,3,4,5].map(() => (
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="text-(--color-ink)">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </div>
+          <span class="font-semibold text-(--color-ink)">4.9</span>
+          <span>· Based on 312 verified reviews</span>
+        </div>
+      </div>
+
+      <div class="hidden lg:flex gap-2" data-reviews-controls>
+        <button type="button" aria-label="Previous review" data-reviews-prev
+                class="w-11 h-11 rounded-full border border-[#D9D9D9] flex items-center justify-center hover:border-(--color-ink) hover:bg-(--color-ink) hover:text-white transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" aria-label="Next review" data-reviews-next
+                class="w-11 h-11 rounded-full border border-[#D9D9D9] flex items-center justify-center hover:border-(--color-ink) hover:bg-(--color-ink) hover:text-white transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="reviews-track flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto -mx-5 sm:-mx-8 px-5 sm:px-8 pb-2"
+         data-reviews-track
+         style="scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; scroll-behavior: smooth;">
+      {reviews.map(() => null)}
+      {reviews.map((r) => (
+        <article class="reviews-card flex flex-col flex-shrink-0" style="width: calc(85% - 0px); scroll-snap-align: start;">
+          <div class="flex gap-0.5 mb-3">
+            {[1,2,3,4,5].map(() => (
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="text-(--color-ink)">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </div>
+          <p class="text-[15px] leading-relaxed mb-5 flex-1">&ldquo;{r.quote}&rdquo;</p>
+          <div>
+            <p class="text-sm font-bold m-0">{r.name}</p>
+            <p class="text-xs text-(--color-muted) mt-0.5">{r.location} · Verified buyer</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex justify-center gap-2 mt-8" data-reviews-dots>
+      {reviews.map((_, i) => (
+        <button type="button" aria-label={`Go to review ${i + 1}`} data-reviews-dot={i}
+                class="reviews-dot w-2 h-2 rounded-full bg-[#D9D9D9] transition-all"
+                data-active={i === 0 ? 'true' : undefined}></button>
+      ))}
+    </div>
+  </div>
+
+  <style>
+    .reviews-track::-webkit-scrollbar { display: none; }
+    .reviews-dot[data-active="true"] { background-color: var(--color-ink); width: 24px; }
+    @media (min-width: 640px) { .reviews-card { width: calc(48% - 10px) !important; } }
+    @media (min-width: 1024px) { .reviews-card { width: calc(33.333% - 16px) !important; } }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var track = document.querySelector('[data-reviews-track]');
+      if (!track) return;
+      var dots = document.querySelectorAll('[data-reviews-dot]');
+      var prev = document.querySelector('[data-reviews-prev]');
+      var next = document.querySelector('[data-reviews-next]');
+      var cards = track.querySelectorAll('.reviews-card');
+
+      function curIdx() {
+        var w = cards[0] ? cards[0].offsetWidth + parseFloat(getComputedStyle(track).gap || 16) : 1;
+        return Math.round(track.scrollLeft / w);
+      }
+      function update() {
+        var i = curIdx();
+        dots.forEach(function (d, k) { if (k === i) d.setAttribute('data-active','true'); else d.removeAttribute('data-active'); });
+      }
+      function go(i) {
+        if (!cards[i]) return;
+        var w = cards[0].offsetWidth + parseFloat(getComputedStyle(track).gap || 16);
+        track.scrollTo({ left: i * w, behavior: 'smooth' });
+      }
+      dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.getAttribute('data-reviews-dot'),10)); }); });
+      if (prev) prev.addEventListener('click', function () { go(Math.max(0, curIdx() - 1)); });
+      if (next) next.addEventListener('click', function () { go(Math.min(cards.length - 1, curIdx() + 1)); });
+      var t;
+      track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(update, 80); }, { passive: true });
+      update();
+    })();
+  </script>
+</section>
