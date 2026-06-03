@@ -5,11 +5,11 @@ const products = [
     id: 'slipons',
     title: 'Crystal Slip-On',
     href: '/collections/shoes',
-    hero: '/images/slipons-collection-studio.jpg',
+    hero: '/images/shoes-collection-product.jpg',
     colors: [
-      { name: 'Black',  hex: '#1a1a1a', img: '/images/slipon-crystal-black-studio.jpg' },
-      { name: 'White',  hex: '#FFFFFF', img: '/images/slipon-crystal-white-studio.jpg' },
-      { name: 'Pewter', hex: '#9B9180', img: '/images/slipon-crystal-pewter-studio.jpg' },
+      { name: 'Black',  hex: '#1a1a1a', img: '/images/shoe-black-product.jpg' },
+      { name: 'White',  hex: '#FFFFFF', img: '/images/shoe-white-product.jpg' },
+      { name: 'Pewter', hex: '#9B9180', img: '/images/shoe-pewter-product.jpg' },
     ],
   },
   {
@@ -41,9 +41,9 @@ const products = [
       {products.map((p) => (
         <div class="group bg-white text-(--color-ink) p-4 sm:p-5 lg:p-6 rounded-sm" style="box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
           <a href={p.href} class="block">
-            <div class="aspect-[4/3] overflow-hidden relative" style="background: radial-gradient(ellipse 80% 70% at 50% 38%, #F2EFE8 0%, #E0D8CC 60%, #CFC6B7 100%);">
+            <div class="aspect-[4/3] overflow-hidden relative bg-white">
               <img id={`fps-${p.id}-main`} src={p.hero} alt={p.title}
-                   class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+                   class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 p-3 sm:p-5"
                    width="1200" height="900" loading="lazy" />
             </div>
           </a>
