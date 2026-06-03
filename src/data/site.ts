@@ -38,14 +38,13 @@ export const SITE = {
     },
   ],
 
-  // Navigation (no /cart, no /checkout — we are a catalog site)
+  // Navigation — replicates Shopify header exactly
   nav: [
     { label: 'Swim', href: '/collections/swim' },
     { label: 'Apparel', href: '/collections/apparel' },
     { label: 'Caps', href: '/collections/caps' },
     { label: 'Footwear', href: '/collections/shoes' },
     { label: 'Accessories', href: '/collections/accessories' },
-    { label: 'Find Us', href: '/find-us' },
     { label: 'About Us', href: '/about', accent: true },
   ],
 };
