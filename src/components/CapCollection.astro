@@ -1,24 +1,75 @@
 ---
+// Cap Collection — dark section with radial glow + 3-tile collage (design spec §7).
 import { waLink } from '../data/site';
 ---
 
-<section class="bg-white py-8 lg:py-12 px-5 sm:px-8">
-  <div class="max-w-[1500px] mx-auto bg-[#F2F2F2] text-(--color-ink) overflow-hidden rounded-sm">
-    <div class="grid grid-cols-1 lg:grid-cols-2">
-      <div class="px-5 sm:px-10 lg:px-14 py-12 lg:py-16 flex flex-col justify-center order-2 lg:order-1">
-        <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-4 text-(--color-ink)/70">The Cap Collection</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5 whitespace-pre-line text-(--color-ink)">{`Quality.\nCommunity.\nStyle.`}</h2>
-        <p class="text-(--color-ink)/70 leading-relaxed mb-7 max-w-md text-[15px]">
-          Four colors. One story. Structured trucker caps with the fish mark embroidered on the front — built for the boat, the boardwalk and everywhere in between.
-        </p>
-        <div class="flex gap-3 flex-wrap">
-          <a href="/collections/caps" class="btn btn-primary">Shop Caps</a>
-          <a href={waLink('Hello, I am interested in the cap collection')} target="_blank" rel="noopener" class="btn btn-ghost">See Details</a>
-        </div>
+<section class="vd-caps">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="vd-container wrap">
+    <div class="text">
+      <div class="eyebrow"><span class="rule"></span>The Cap Collection</div>
+      <h2>Quality.<br/>Community.<br/><em>Style.</em></h2>
+      <p>Four colors. One story. Structured trucker caps with the fish mark embroidered on the front — built for the boat, the boardwalk and everywhere in between.</p>
+      <div class="ctas">
+        <a href="/collections/caps" class="btn btn-primary">
+          Shop Caps
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href={waLink('Hello, I am interested in the cap collection')} target="_blank" rel="noopener" class="btn see-details">See Details</a>
       </div>
-      <div class="relative aspect-square lg:aspect-auto order-1 lg:order-2 min-h-[400px] lg:min-h-[480px]">
-        <img src="/images/caps-lifestyle-collage.jpg" alt="Cap Collection" class="absolute inset-0 w-full h-full object-cover" width="1500" height="1500" loading="lazy" />
-      </div>
+    </div>
+    <div class="collage">
+      <img class="tile tall" src="/images/caps-collection-studio.jpg" alt="Cap collection" loading="lazy" />
+      <img class="tile" src="/images/cap-white-product.png" alt="White trucker cap" loading="lazy" />
+      <img class="tile" src="/images/caps-lifestyle-collage.jpg" alt="Caps lifestyle" loading="lazy" />
     </div>
   </div>
 </section>
+
+<style>
+  .vd-caps {
+    background: #0F2C36; position: relative; overflow: hidden;
+    padding: clamp(70px, 9vw, 120px) 0;
+  }
+  .glow {
+    position: absolute; top: -120px; right: -80px; width: 420px; height: 420px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(18,144,155,.35), transparent 70%);
+    pointer-events: none;
+  }
+  .wrap {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1.05fr;
+    gap: clamp(36px, 5vw, 72px); align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font: 600 12px/1 var(--font-sans); letter-spacing: .2em; text-transform: uppercase;
+    color: #7FCBD3; margin-bottom: 20px;
+  }
+  .eyebrow .rule { width: 24px; height: 1px; background: #7FCBD3; }
+
+  h2 {
+    margin: 0; font: 400 clamp(38px, 4.6vw, 62px)/1.02 var(--font-serif);
+    letter-spacing: -.02em; color: #fff;
+  }
+  h2 em { font-style: italic; color: #7FCBD3; }
+
+  p { margin: 26px 0 0; max-width: 420px; font: 400 16.5px/1.65 var(--font-sans); color: rgba(255,255,255,.72); }
+
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .see-details { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.35); }
+  .see-details:hover { background: rgba(255,255,255,.1); }
+
+  .collage {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    gap: 14px; height: clamp(360px, 42vw, 480px);
+  }
+  .tile { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+  .tall { grid-row: span 2; }
+
+  @media (max-width: 899px) {
+    .wrap { grid-template-columns: 1fr; }
+    .collage { height: auto; aspect-ratio: 1.05; }
+  }
+</style>

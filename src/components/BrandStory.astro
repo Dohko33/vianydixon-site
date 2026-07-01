@@ -1,31 +1,58 @@
 ---
-import { waLink } from '../data/site';
+// Brand Story — sand-alt band, image flush left, editorial text right with
+// founder signature (design spec §6).
 ---
 
-<section class="bg-white px-5 sm:px-8 py-12 lg:py-20 overflow-hidden">
-  <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-    <div class="lg:col-span-7 order-2 lg:order-1">
-      <div class="aspect-[4/3] sm:aspect-[5/4] overflow-hidden relative bg-(--color-sand)">
-        <img src="/images/brand-story.jpg" alt="Viany Dixon · Founder" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      </div>
+<section class="vd-story">
+  <div class="wrap">
+    <div class="media">
+      <img src="/images/brand-story.jpg" alt="Viany Dixon · Founder & Designer" loading="lazy" />
     </div>
-
-    <div class="lg:col-span-5 order-1 lg:order-2 lg:pl-4">
-      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-4 text-(--color-muted)">Our Story</p>
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-medium tracking-[-0.025em] leading-[1.05] mb-6 text-(--color-ink)">
-        From the islands,<br/>for the world.
-      </h2>
-      <div class="text-[15px] sm:text-base text-[#444] leading-relaxed space-y-4 mb-7 max-w-md">
-        <p>Founded in Roatán by Viany Dixon. Performance wear built for the sea, the sun, and the way we live in the islands. Every piece is designed with the Caribbean in mind — and crafted to travel anywhere.</p>
+    <div class="text">
+      <div class="vd-eyebrow" style="margin-bottom:20px">Our Story</div>
+      <h2>From the islands,<br/>for the world.</h2>
+      <p>Founded in Roatán by Viany Dixon. Performance wear built for the sea, the sun, and the way we live in the islands. Every piece is designed with the Caribbean in mind — and crafted to travel anywhere.</p>
+      <div class="sig">
+        <div class="rule"></div>
+        <div>
+          <div class="name">Viany Dixon</div>
+          <div class="role">Founder &amp; Designer</div>
+        </div>
       </div>
-      <p class="font-medium text-(--color-ink) mb-7 italic text-lg">
-        — Viany Dixon
-        <span class="block not-italic text-[12px] tracking-[0.15em] uppercase font-bold text-(--color-muted) mt-1">Founder &amp; Designer</span>
-      </p>
-      <a href="/about" class="inline-flex items-center text-[12px] font-bold tracking-[0.12em] uppercase border-b-2 border-(--color-ink) pb-1 hover:opacity-70 transition-opacity">
+      <a href="/about" class="btn btn-dark" style="align-self:flex-start;margin-top:34px">
         Read Our Story
-        <span class="ml-2">→</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  .vd-story { background: #F1E9DA; }
+  .wrap {
+    max-width: 1440px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: 560px;
+  }
+  .media { position: relative; overflow: hidden; min-height: 420px; }
+  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  .text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(48px, 6vw, 84px) clamp(28px, 5vw, 80px);
+  }
+  h2 {
+    margin: 0; font: 400 clamp(32px, 3.6vw, 50px)/1.06 var(--font-serif);
+    letter-spacing: -.015em; color: #0F2C36;
+  }
+  p { margin: 26px 0 0; max-width: 460px; font: 400 17px/1.65 var(--font-sans); color: #54636A; }
+
+  .sig { margin-top: 30px; display: flex; align-items: center; gap: 14px; }
+  .rule { width: 44px; height: 1px; background: #0F2C36; opacity: .3; }
+  .name { font: 500 17px/1.1 var(--font-serif); color: #0F2C36; }
+  .role { margin-top: 3px; font: 500 12px/1 var(--font-sans); letter-spacing: .06em; text-transform: uppercase; color: #8a8575; }
+
+  @media (max-width: 899px) {
+    .wrap { grid-template-columns: 1fr; }
+    .media { min-height: 320px; aspect-ratio: 4/3; }
+  }
+</style>

@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import ValueProps from '../components/ValueProps.astro';
 import CategoryGrid from '../components/CategoryGrid.astro';
+import ValueProps from '../components/ValueProps.astro';
 import FeaturedProducts from '../components/FeaturedProducts.astro';
 import BrandStory from '../components/BrandStory.astro';
 import CapCollection from '../components/CapCollection.astro';
@@ -12,14 +12,15 @@ import FAQ from '../components/FAQ.astro';
 import Newsletter from '../components/Newsletter.astro';
 ---
 
-<BaseLayout>
+<BaseLayout heroOverlay>
+  <!-- Section order per design handoff -->
   <Hero />
-  <ValueProps />
   <CategoryGrid />
+  <ValueProps />
   <FeaturedProducts />
-  <FindUsBanner />
   <BrandStory />
   <CapCollection />
+  <FindUsBanner />
   <Reviews />
   <FAQ />
   <Newsletter />

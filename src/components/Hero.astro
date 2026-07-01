@@ -1,24 +1,81 @@
 ---
+// Hero — full-bleed video with dual gradient overlays, transparent header on top,
+// big Zodiak H1 with italic pale-aqua "Want." (design spec §2).
+import Header from './Header.astro';
 import { waLink } from '../data/site';
 ---
 
-<section class="relative h-[72vh] sm:h-[80vh] min-h-[480px] overflow-hidden bg-black">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+<section class="vd-hero">
+  <video autoplay muted loop playsinline class="bg">
     <source src="/videos/hero-tropical.mp4" type="video/mp4" />
   </video>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+  <div class="grad-v" aria-hidden="true"></div>
+  <div class="grad-h" aria-hidden="true"></div>
 
-  <div class="relative h-full max-w-[1500px] mx-auto px-5 sm:px-8 flex flex-col justify-end pb-16 lg:pb-24">
-    <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-4 text-white/85">New Arrivals · 2026</p>
-    <h1 class="font-serif italic text-[56px] sm:text-[88px] lg:text-[120px] font-medium tracking-[-0.02em] leading-[0.95] text-white max-w-2xl mb-5">
-      Feel As<br/>You Want.
-    </h1>
-    <p class="text-base sm:text-lg text-white/90 max-w-md mb-8 leading-relaxed">
-      Island performance wear made for movement, sea and sun.
-    </p>
-    <div class="flex gap-3 flex-wrap">
-      <a href="/collections/swim" class="btn btn-primary" style="background:white;color:#000;">Shop Swim</a>
-      <a href={waLink()} target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:white;color:white;">Inquire</a>
+  <Header overlay />
+
+  <div class="content">
+    <div class="inner">
+      <div class="wrap">
+        <div class="eyebrow"><span class="rule"></span>New Arrivals · 2026</div>
+        <h1>Feel As You <em>Want.</em></h1>
+        <p>Island performance wear made for movement, sea and sun.</p>
+        <div class="ctas">
+          <a href="/collections/swim" class="btn btn-primary" style="padding:16px 30px">
+            Shop Swim
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href={waLink()} target="_blank" rel="noopener" class="btn btn-ghost-light" style="padding:16px 30px">Inquire</a>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+  </div>
 </section>
+
+<style>
+  .vd-hero {
+    position: relative;
+    height: min(90vh, 900px); min-height: 600px;
+    overflow: hidden; background: #0F2C36;
+  }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .grad-v { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,26,32,.46) 0%, rgba(7,26,32,.10) 34%, rgba(7,26,32,.62) 100%); pointer-events: none; }
+  .grad-h { position: absolute; inset: 0; background: linear-gradient(96deg, rgba(7,26,32,.55) 0%, rgba(7,26,32,.12) 52%, transparent 74%); pointer-events: none; }
+
+  .content { position: absolute; inset: 0; display: flex; align-items: center; pointer-events: none; }
+  .inner { max-width: 1280px; width: 100%; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+  .wrap { max-width: 640px; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font: 600 12px/1 var(--font-sans); letter-spacing: .24em; text-transform: uppercase;
+    color: #CDEBEF; margin-bottom: 22px;
+  }
+  .eyebrow .rule { width: 26px; height: 1px; background: #CDEBEF; opacity: .7; }
+
+  h1 {
+    margin: 0;
+    font: 400 clamp(52px, 7.4vw, 104px)/.96 var(--font-serif);
+    letter-spacing: -.02em; color: #fff; text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: #CFEDEF; }
+
+  p {
+    margin: 26px 0 0; max-width: 440px;
+    font: 400 18px/1.55 var(--font-sans); color: rgba(255,255,255,.9);
+  }
+
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; pointer-events: auto; }
+
+  .scroll-cue {
+    position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,.7);
+  }
+  .scroll-cue span { font: 600 10px/1 var(--font-sans); letter-spacing: .24em; text-transform: uppercase; }
+</style>

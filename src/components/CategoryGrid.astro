@@ -1,31 +1,62 @@
 ---
-// Categories — exact 1:1 of Shopify live (images, order, sizing)
+// Categories — 3-col grid of 6 image cards, bottom gradient + name/desc (design spec §3).
 const cats = [
-  { label: 'Swim',        href: '/collections/swim',        bg: '#d9c9b5', img: '/images/cat-swim.png',        fit: 'cover' },
-  { label: 'Rashguard',   href: '/collections/apparel',     bg: '#9bb5c7', img: '/images/cat-apparel.png',     fit: 'cover' },
-  { label: 'Caps',        href: '/collections/caps',        bg: '#e8dbc4', img: '/images/cat-caps.png',        fit: 'cover' },
-  { label: 'Footwear',    href: '/collections/shoes',       bg: '#c9cdd4', img: '/images/cat-footwear.png',    fit: 'cover' },
-  { label: 'Sportswear',  href: '/collections/sportswear',  bg: '#d4b5ac', img: '/images/cat-sportswear.jpg',  fit: 'cover' },
-  { label: 'Accessories', href: '/collections/accessories', bg: '#b8c5b5', img: '/images/cat-accessories.png', fit: 'cover' },
+  { label: 'Swim',        desc: 'Bikinis, one-pieces & boardshorts', href: '/collections/swim',        img: '/images/cat-swim.png' },
+  { label: 'Rashguard',   desc: 'UPF 50+ sun protection',            href: '/collections/apparel',     img: '/images/cat-apparel.png' },
+  { label: 'Caps',        desc: 'Structured trucker & dad caps',     href: '/collections/caps',        img: '/images/cat-caps.png' },
+  { label: 'Footwear',    desc: 'Slip-ons & sandals',                href: '/collections/shoes',       img: '/images/cat-footwear.png' },
+  { label: 'Sportswear',  desc: 'Move on land & sea',                href: '/collections/sportswear',  img: '/images/cat-sportswear.jpg' },
+  { label: 'Accessories', desc: 'Tumblers, totes & more',            href: '/collections/accessories', img: '/images/cat-accessories.png' },
 ];
 ---
 
-<section class="py-6 lg:py-10 bg-white">
-  <div class="max-w-[1500px] mx-auto">
-    <h2 class="text-[28px] sm:text-4xl lg:text-[48px] font-medium tracking-[-0.025em] leading-[1.05] mb-5 lg:mb-7 px-5 sm:px-8">
-      From Roatán to the World
-    </h2>
+<section class="vd-section" style="background:#FBF7EF">
+  <div class="vd-container">
+    <div class="head">
+      <div>
+        <div class="vd-eyebrow" style="margin-bottom:16px">Shop by category</div>
+        <h2 class="vd-h2">From Roatán to the World</h2>
+      </div>
+      <a href="/collections/swim" class="vd-link">View all
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-0">
+    <div class="grid">
       {cats.map((c) => (
-        <a href={c.href} class="block group">
-          <div class="aspect-square overflow-hidden relative" style={`background-color:${c.bg}`}>
-            <img src={c.img} alt={c.label} loading="lazy"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+        <a href={c.href} class="card">
+          <img src={c.img} alt={c.label} loading="lazy" />
+          <div class="shade" aria-hidden="true"></div>
+          <div class="label">
+            <div class="name">{c.label}</div>
+            <div class="desc">{c.desc}</div>
           </div>
-          <p class="text-center text-[15px] sm:text-[17px] mt-3 mb-3">{c.label}</p>
         </a>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap; margin-bottom: 44px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    position: relative; overflow: hidden; border-radius: 16px;
+    aspect-ratio: 3/3.7; text-decoration: none; display: block;
+  }
+  .card img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    transition: transform .7s ease;
+  }
+  .card:hover img { transform: scale(1.06); }
+  .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,24,30,.78), transparent 58%); pointer-events: none; }
+  .label { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; pointer-events: none; }
+  .name { font: 500 24px/1 var(--font-serif); color: #fff; }
+  .desc { margin-top: 6px; font: 500 12.5px/1 var(--font-sans); letter-spacing: .02em; color: rgba(255,255,255,.78); }
+
+  @media (max-width: 899px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 539px) { .grid { grid-template-columns: 1fr 1fr; gap: 10px; } .label { padding: 14px; } .name { font-size: 19px; } .desc { font-size: 11px; } }
+</style>

@@ -1,38 +1,69 @@
 ---
-// Find Us — Island Shop @ Kimpton (single retailer, left-text + right-card layout)
-import { SITE } from '../data/site';
-const kimpton = SITE.retailers.find((r) => r.name === 'Island Shop');
+// Find Us — centered header + 2 location cards with photos (design spec §8).
+const locations = [
+  {
+    name: 'Island Shop',
+    at: 'at Kimpton Grand Roatán Resort + Spa',
+    address: 'West Bay Beach, Bay Islands, Roatán, Honduras',
+    img: '/images/loc-kimpton.jpg',
+    mapsUrl: 'https://maps.google.com/?q=Kimpton+Grand+Roatan+Resort+Spa',
+  },
+  {
+    name: 'Island Outfitters',
+    at: "at Juan Manuel Gálvez Int'l Airport (RTB)",
+    address: 'Gate D5–D6, Coxen Hole, Roatán, Honduras',
+    img: '/images/findus-airport.png',
+    mapsUrl: 'https://maps.google.com/?q=Juan+Manuel+Galvez+International+Airport+Roatan',
+  },
+];
 ---
 
-<section class="bg-(--color-cream) px-5 sm:px-8 py-14 lg:py-20">
-  <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-    <!-- LEFT: heading + description -->
-    <div>
-      <p class="text-[11px] tracking-[0.18em] uppercase font-bold mb-3 text-(--color-muted)">Find Us In Person</p>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.025em] leading-[1.05] mb-5">
-        Visit our retailers across Roatán.
-      </h2>
-      <p class="text-[15px] sm:text-base text-[#444] leading-relaxed max-w-md">
-        VIANY.DIXON® apparel and souvenirs available at our partner locations across the Bay Islands.
-      </p>
+<section class="vd-section" style="background:#FBF7EF">
+  <div class="vd-container">
+    <div class="head">
+      <div class="vd-eyebrow" style="margin-bottom:18px">Find Us In Person</div>
+      <h2 class="vd-h2">Visit our retailers across Roatán.</h2>
+      <p>VIANY.DIXON® apparel and souvenirs available at our partner locations across the Bay Islands.</p>
     </div>
 
-    <!-- RIGHT: Island Shop card (only) -->
-    <div>
-      {kimpton && (
-        <article class="bg-white border border-(--color-line) p-6 lg:p-8">
-          <h3 class="text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-[-0.015em] leading-[1.05] mb-2 text-(--color-gold)">{kimpton.name}</h3>
-          <p class="text-base sm:text-lg font-medium tracking-[-0.01em] mb-5 text-(--color-ink)">at {kimpton.venue}</p>
-          <p class="text-sm text-(--color-muted) mb-6 flex items-start gap-2">
-            <span class="shrink-0">📍</span>
-            <span>{kimpton.address}</span>
-          </p>
-          <a href={kimpton.mapsUrl} target="_blank" rel="noopener"
-             class="inline-block text-[12px] font-bold tracking-[0.12em] uppercase border-b-2 border-(--color-ink) pb-0.5 hover:opacity-70 transition-opacity">
-            Get Directions
-          </a>
-        </article>
-      )}
+    <div class="grid">
+      {locations.map((l) => (
+        <div class="card">
+          <img src={l.img} alt={l.name} loading="lazy" />
+          <div class="body">
+            <h3>{l.name}</h3>
+            <div class="at">{l.at}</div>
+            <div class="addr">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              {l.address}
+            </div>
+            <a href={l.mapsUrl} target="_blank" rel="noopener" class="vd-link" style="margin-top:22px;font-size:12.5px;letter-spacing:.08em;padding-bottom:6px">
+              Get Directions
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  .head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+  .head p { margin: 18px 0 0; font: 400 16.5px/1.6 var(--font-sans); color: #54636A; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card { background: #fff; border: 1px solid #EBE3D2; border-radius: 18px; overflow: hidden; }
+  .card > img { width: 100%; height: 230px; object-fit: cover; display: block; }
+
+  .body { padding: 26px 28px 30px; }
+  h3 { margin: 0; font: 500 24px/1.1 var(--font-serif); color: #0F2C36; }
+  .at { margin-top: 6px; font: 500 13.5px/1.3 var(--font-sans); color: #12909B; }
+  .addr {
+    display: flex; align-items: flex-start; gap: 9px; margin-top: 16px;
+    font: 400 14.5px/1.5 var(--font-sans); color: #54636A;
+  }
+  .addr svg { flex-shrink: 0; margin-top: 2px; }
+
+  @media (max-width: 767px) { .grid { grid-template-columns: 1fr; } }
+</style>

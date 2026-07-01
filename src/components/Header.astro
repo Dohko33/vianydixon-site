@@ -1,64 +1,63 @@
 ---
-import { SITE } from '../data/site';
-const pathname = Astro.url.pathname;
+// Header — white-on-dark. `overlay` = transparent, absolutely positioned over the hero
+// (home). Default = solid deep-sea bar (sub-pages).
+import { SITE, waLink } from '../data/site';
+interface Props { overlay?: boolean }
+const { overlay = false } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-(--color-line)" data-header>
-  <div class="max-w-[1500px] mx-auto flex items-center px-5 sm:px-8 py-3 gap-4">
-    <!-- LEFT: Logo -->
-    <div class="flex-1 flex justify-start shrink-0">
-      <a href="/" aria-label={SITE.brandName} class="flex items-center">
-        <img src="/images/logo-stacked-black.png" alt={SITE.brandName}
-             class="h-8 sm:h-9 lg:h-10 w-auto"
-             width="786" height="221" />
-      </a>
-    </div>
+<header class={`vd-header ${overlay ? 'overlay' : 'solid'}`}>
+  <a href="/" aria-label={SITE.brandName} class="logo">
+    <img src="/images/logo-stacked.png" alt={SITE.brandName} width="200" height="86" />
+  </a>
 
-    <!-- CENTER: Nav -->
-    <ul class="hidden md:flex flex-1 justify-center gap-6 lg:gap-7 list-none m-0 p-0">
-      {SITE.nav.map((item) => (
-        <li>
-          <a href={item.href}
-             class="text-[13px] font-bold uppercase tracking-[0.05em] whitespace-nowrap pb-1 border-b-2 border-transparent hover:border-current transition-colors"
-             style={`color:${item.accent ? 'var(--color-accent)' : 'var(--color-ink)'}`}>
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+  <nav class="nav">
+    {SITE.nav.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+  </nav>
 
-    <!-- RIGHT: Search + icons -->
-    <div class="flex-1 flex justify-end items-center gap-3 sm:gap-4 shrink-0">
-      <!-- Search pill (Lululemon-style) — always visible on desktop -->
-      <form action="/search" method="get" class="hidden lg:flex items-center bg-[#F4F4F4] rounded-full px-4 py-2 gap-2 w-[220px] focus-within:bg-[#EDEDED] transition-colors">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" class="shrink-0 opacity-70">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
-        </svg>
-        <input type="text" name="q" placeholder="Search"
-               class="bg-transparent outline-none text-[13px] flex-1 placeholder:text-[#666]"/>
-      </form>
-
-      <!-- Search icon for mobile -->
-      <button type="button" aria-label="Search" class="lg:hidden p-1 hover:opacity-60 transition-opacity" data-search-toggle>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
-        </svg>
-      </button>
-
-      <!-- Account / Contact -->
-      <a href="/contact" aria-label="Contact" class="hidden sm:block p-1 hover:opacity-60 transition-opacity">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-          <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
-        </svg>
-      </a>
-
-      <!-- Wholesale "bag" -->
-      <a href="/wholesale" aria-label="Wholesale" class="p-1 hover:opacity-60 transition-opacity">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-          <path d="M5 7h14l-1.5 11a2 2 0 0 1-2 1.7H8.5a2 2 0 0 1-2-1.7L5 7Z"/>
-          <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
-        </svg>
-      </a>
-    </div>
+  <div class="icons">
+    <a href={waLink()} target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4l-2.3-1c-.2-.1-.4 0-.5.1l-1 1.3c-1.4-.7-2.6-1.9-3.3-3.3l1.3-1c.1-.1.2-.3.1-.5l-1-2.3c-.1-.3-.4-.4-.7-.3-.7.2-1.3.7-1.7 1.3-.4.6-.6 1.4-.4 2.1.5 2.8 2.7 5 5.5 5.5.7.2 1.5 0 2.1-.4.6-.4 1.1-1 1.3-1.7.1-.3 0-.6-.3-.7zM12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.3 1.2 4.7L2 22l5.4-1.2c1.3.7 2.9 1.1 4.5 1.1 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.2-1.2L4 19.5l.7-3.6C3.9 14.7 3.5 13.4 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.5-8.5 8.5z"/></svg>
+    </a>
+    <a href="/contact" aria-label="Contact">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+    </a>
+    <a href="/wholesale" aria-label="Wholesale">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+    </a>
   </div>
 </header>
+
+<style>
+  .vd-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: 18px clamp(20px, 4vw, 48px);
+    color: #fff;
+  }
+  .overlay { position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: transparent; }
+  .solid { background: #0F2C36; }
+
+  .logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .logo img { height: 46px; width: auto; opacity: .97; }
+
+  .nav { display: flex; align-items: center; gap: 30px; }
+  .nav a {
+    color: #fff; text-decoration: none;
+    font: 500 13px/1 var(--font-sans); letter-spacing: .04em;
+    opacity: .9; transition: opacity .2s;
+  }
+  .nav a:hover { opacity: .6; }
+
+  .icons { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+  .icons a { color: #fff; opacity: .92; display: inline-flex; transition: opacity .2s; }
+  .icons a:hover { opacity: .6; }
+
+  @media (max-width: 899px) {
+    .nav { display: none; }
+  }
+  @media (max-width: 479px) {
+    .logo img { height: 38px; }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
-// Rotating announcement bar — replicates Shopify exactly
+// Announcement bar — dark strip, 3 messages with bullet separators (design spec §1).
+// On mobile only the first message shows.
 const messages = [
   '🌎 Now shipping worldwide from Roatán',
   '🏝️ Find us at the Kimpton Grand Roatán Island Shop',
@@ -7,27 +8,24 @@ const messages = [
 ];
 ---
 
-<div class="text-center py-2.5 text-[12px] tracking-[0.04em] font-medium overflow-hidden" style="background:#F2F2F2;color:#000;">
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8">
-    <div class="relative h-[18px]" data-vd-ann-rotate>
-      {messages.map((m, i) => (
-        <p class="absolute inset-0 flex items-center justify-center transition-opacity duration-500" data-vd-ann-msg style={`opacity:${i === 0 ? 1 : 0}`}>{m}</p>
-      ))}
-    </div>
-  </div>
+<div class="vd-announce">
+  {messages.map((m, i) => (
+    <>
+      {i > 0 && <span class="sep" aria-hidden="true">•</span>}
+      <span class={`msg ${i > 0 ? 'extra' : ''}`}>{m}</span>
+    </>
+  ))}
 </div>
 
-<script is:inline>
-  (function () {
-    var track = document.querySelector('[data-vd-ann-rotate]');
-    if (!track) return;
-    var msgs = track.querySelectorAll('[data-vd-ann-msg]');
-    if (msgs.length < 2) return;
-    var i = 0;
-    setInterval(function () {
-      msgs[i].style.opacity = '0';
-      i = (i + 1) % msgs.length;
-      msgs[i].style.opacity = '1';
-    }, 5000);
-  })();
-</script>
+<style>
+  .vd-announce {
+    background: #0F2C36; color: #CFEDEF;
+    font-size: 12.5px; letter-spacing: .04em; text-align: center;
+    padding: 9px 16px;
+  }
+  .msg { opacity: .92; }
+  .sep { opacity: .32; padding: 0 12px; }
+  @media (max-width: 767px) {
+    .extra, .sep { display: none; }
+  }
+</style>
