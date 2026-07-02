@@ -63,11 +63,11 @@ const star = 'M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9
   .stars { display: flex; gap: 2px; color: #E7A33E; }
   .based { margin-top: 5px; font: 400 12.5px/1 var(--font-sans); color: #8a8575; }
 
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: start; }
-  .card { background: #fff; border: 1px solid #EBE3D2; border-radius: 16px; padding: 26px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch; }
+  .card { background: #fff; border: 1px solid #EBE3D2; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; }
   .card .stars { margin-bottom: 16px; }
   .card p { margin: 0; font: 400 16px/1.55 var(--font-serif); font-style: italic; color: #2c3d43; }
-  .who { margin-top: 20px; padding-top: 18px; border-top: 1px solid #EFE7D6; }
+  .who { margin-top: auto; padding-top: 18px; border-top: 1px solid #EFE7D6; }
   .name { font: 600 14px/1.2 var(--font-sans); color: #0F2C36; }
   .meta { margin-top: 3px; font: 400 12px/1.3 var(--font-sans); color: #8a8575; }
 
