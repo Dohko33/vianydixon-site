@@ -190,21 +190,21 @@ const products = [
     background: #fff; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,.08);
   }
 
-  /* Prev / next variation arrows — fade in on card hover (desktop only) */
+  /* Prev / next variation arrows — always visible, on every device */
   .nav {
     position: absolute; top: 50%; transform: translateY(-50%);
     width: 40px; height: 40px; border-radius: 50%; border: 0; z-index: 3;
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     color: #0F2C36; background: rgba(255,255,255,.92);
     box-shadow: 0 4px 14px rgba(15,44,54,.16);
-    opacity: 0; transition: opacity .22s, background .2s;
+    transition: background .2s, transform .15s;
   }
   .nav.prev { left: 14px; }
   .nav.next { right: 14px; }
   .nav:hover { background: #fff; }
+  .nav:active { transform: translateY(-50%) scale(.9); }
   .nav[hidden] { display: none; }
-  .card:hover .nav:not([hidden]) { opacity: 1; }
-  @media (hover: none) { .nav { display: none !important; } }
+  @media (max-width: 767px) { .nav { width: 36px; height: 36px; } }
 
   .body { padding: 24px 26px 28px; }
   .cat { font: 600 11px/1 var(--font-sans); letter-spacing: .14em; text-transform: uppercase; color: #12909B; }
