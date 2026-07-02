@@ -22,7 +22,7 @@ export const SITE = {
   // Physical locations where products are sold
   retailers: [
     {
-      name: 'Island Shop',
+      name: 'Roatan Thing',
       venue: 'Kimpton Grand Roatán Resort + Spa',
       address: 'West Bay Beach, Bay Islands, Roatán, Honduras',
       phone: '+504 2405-1001',
