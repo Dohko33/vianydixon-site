@@ -9,11 +9,12 @@ const products = [
     category: 'Footwear',
     title: 'Crystal Slip-On',
     href: '/collections/shoes',
-    hero: '/images/shoes-collection-product.jpg',
+    hero: '/images/shoe-white-editorial.jpg',
+    fit: 'cover',
     colors: [
-      { name: 'Black',  hex: '#1a1a1a', img: '/images/shoe-black-product.jpg' },
-      { name: 'White',  hex: '#f4f4f2', img: '/images/shoe-white-product.jpg' },
-      { name: 'Pewter', hex: '#9a958c', img: '/images/shoe-pewter-product.jpg' },
+      { name: 'White',  hex: '#f4f4f2', img: '/images/shoe-white-editorial.jpg' },
+      { name: 'Black',  hex: '#1a1a1a', img: '/images/shoe-black-editorial.jpg' },
+      { name: 'Pewter', hex: '#9a958c', img: '/images/shoe-pewter-editorial.jpg' },
     ],
   },
   {
@@ -48,7 +49,7 @@ const products = [
     <div class="grid">
       {products.map((p) => (
         <div class="card">
-          <div class="media">
+          <div class={`media ${p.fit === 'cover' ? 'cover' : ''}`}>
             <img id={`fp-${p.id}-img`} src={p.hero} alt={p.title} loading="lazy" />
             <span class={`badge ${p.badgeStyle}`}>{p.badge}</span>
             <span class="heart" aria-hidden="true">
@@ -115,6 +116,8 @@ const products = [
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
     padding: 14px; transition: transform .7s ease, opacity .3s;
   }
+  /* Editorial photos already have their own scene → fill, no padding */
+  .media.cover img { object-fit: cover; padding: 0; }
   .card:hover .media img { transform: scale(1.05); }
 
   .badge {
