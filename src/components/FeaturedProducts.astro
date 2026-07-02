@@ -1,7 +1,6 @@
 ---
-// Featured Products — 2 white cards with badge, wishlist heart, color swatches +
-// "Shop →" link (design spec §5). Improvement over the prototype: clicking a
-// swatch swaps the product image (kept from our previous build).
+// Featured Products — each card is a horizontal, swipeable gallery of the
+// product's color variations. Color dots double as pagination indicators.
 const products = [
   {
     id: 'slipons',
@@ -9,7 +8,6 @@ const products = [
     category: 'Footwear',
     title: 'Crystal Slip-On',
     href: '/collections/shoes',
-    hero: '/images/shoe-white-editorial.jpg',
     fit: 'cover',
     colors: [
       { name: 'White',  hex: '#f4f4f2', img: '/images/shoe-white-editorial.jpg' },
@@ -23,7 +21,7 @@ const products = [
     category: 'Caps',
     title: 'Fish Mark Trucker',
     href: '/collections/caps',
-    hero: '/images/cap-navy-product.webp',
+    fit: 'contain',
     colors: [
       { name: 'Navy',  hex: '#14304a', img: '/images/cap-navy-product.webp' },
       { name: 'White', hex: '#f4f4f2', img: '/images/cap-white-product.webp' },
@@ -49,23 +47,28 @@ const products = [
     <div class="grid">
       {products.map((p) => (
         <div class="card">
-          <div class={`media ${p.fit === 'cover' ? 'cover' : ''}`}>
-            <img id={`fp-${p.id}-img`} src={p.hero} alt={p.title} loading="lazy" />
+          {/* Swipeable variation gallery */}
+          <div class={`gallery ${p.fit === 'cover' ? 'cover' : 'contain'}`} data-gallery={p.id}>
+            {p.colors.map((c) => (
+              <div class="slide">
+                <img src={c.img} alt={`${p.title} — ${c.name}`} loading="lazy" />
+              </div>
+            ))}
             <span class={`badge ${p.badgeStyle}`}>{p.badge}</span>
             <span class="heart" aria-hidden="true">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0F2C36" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S3.5 14.5 3.5 8.8A4.3 4.3 0 0 1 12 6.9a4.3 4.3 0 0 1 8.5 1.9C20.5 14.5 12 20.5 12 20.5Z"/></svg>
             </span>
           </div>
+
           <div class="body">
             <div class="cat">{p.category}</div>
             <h3>{p.title}</h3>
             <div class="row">
-              <div class="swatches" data-fp-swatches={p.id}>
+              <div class="swatches" data-dots={p.id}>
                 {p.colors.map((c, i) => (
                   <button type="button" title={c.name} aria-label={`View ${c.name}`}
                           class="dot" style={`background:${c.hex}`}
-                          data-img={c.img} data-target={`fp-${p.id}-img`}
-                          data-active={i === 0 ? 'true' : undefined}></button>
+                          data-index={i} data-active={i === 0 ? 'true' : undefined}></button>
                 ))}
               </div>
               <span class="count">{p.colors.length} colors</span>
@@ -81,18 +84,38 @@ const products = [
 
   <script is:inline>
     (function () {
-      document.querySelectorAll('.dot[data-img]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var t = document.getElementById(btn.getAttribute('data-target'));
-          if (!t) return;
-          t.style.opacity = '0';
-          setTimeout(function () { t.src = btn.getAttribute('data-img'); t.style.opacity = '1'; }, 150);
-          var group = btn.closest('[data-fp-swatches]');
-          if (group) {
-            group.querySelectorAll('.dot').forEach(function (b) { b.removeAttribute('data-active'); });
-            btn.setAttribute('data-active', 'true');
-          }
+      document.querySelectorAll('[data-gallery]').forEach(function (gallery) {
+        var id = gallery.getAttribute('data-gallery');
+        var dotsWrap = document.querySelector('[data-dots="' + id + '"]');
+        if (!dotsWrap) return;
+        var dots = dotsWrap.querySelectorAll('.dot');
+        var slides = gallery.querySelectorAll('.slide');
+
+        function currentIndex() {
+          var w = slides[0] ? slides[0].offsetWidth : 1;
+          return Math.round(gallery.scrollLeft / w);
+        }
+        function setActive(i) {
+          dots.forEach(function (d, k) {
+            if (k === i) d.setAttribute('data-active', 'true');
+            else d.removeAttribute('data-active');
+          });
+        }
+        // Click a dot → scroll to that variation
+        dots.forEach(function (dot) {
+          dot.addEventListener('click', function () {
+            var i = parseInt(dot.getAttribute('data-index'), 10);
+            gallery.scrollTo({ left: i * slides[0].offsetWidth, behavior: 'smooth' });
+          });
         });
+        // Swipe/scroll → update active dot
+        var t;
+        gallery.addEventListener('scroll', function () {
+          clearTimeout(t);
+          t = setTimeout(function () { setActive(currentIndex()); }, 60);
+        }, { passive: true });
+        // Keep dot in sync if the browser restores a scroll position on load
+        setActive(currentIndex());
       });
     })();
   </script>
@@ -111,17 +134,20 @@ const products = [
   }
   .card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(15,44,54,.1); }
 
-  .media { position: relative; overflow: hidden; aspect-ratio: 4/3.4; background: #fff; }
-  .media img {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
-    padding: 14px; transition: transform .7s ease, opacity .3s;
+  /* Horizontal swipeable gallery of variations */
+  .gallery {
+    position: relative; aspect-ratio: 4/3.4; background: #fff;
+    display: flex; overflow-x: auto;
+    scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;
+    scroll-behavior: smooth;
   }
-  /* Editorial photos already have their own scene → fill, no padding */
-  .media.cover img { object-fit: cover; padding: 0; }
-  .card:hover .media img { transform: scale(1.05); }
+  .gallery::-webkit-scrollbar { display: none; }
+  .slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; }
+  .slide img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
+  .gallery.cover .slide img { object-fit: cover; padding: 0; }
 
   .badge {
-    position: absolute; top: 16px; left: 16px; padding: 7px 13px;
+    position: absolute; top: 16px; left: 16px; z-index: 2; padding: 7px 13px;
     color: #fff; font: 600 10.5px/1 var(--font-sans); letter-spacing: .1em;
     text-transform: uppercase; border-radius: 100px;
   }
@@ -129,7 +155,7 @@ const products = [
   .badge.dark { background: #0F2C36; }
 
   .heart {
-    position: absolute; top: 14px; right: 16px; width: 36px; height: 36px;
+    position: absolute; top: 14px; right: 16px; z-index: 2; width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
     background: #fff; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,.08);
   }
