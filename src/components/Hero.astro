@@ -6,9 +6,23 @@ import { waLink } from '../data/site';
 ---
 
 <section class="vd-hero">
-  <video autoplay muted loop playsinline class="bg" poster="/videos/hero-poster.jpg" preload="metadata">
-    <source src="/videos/hero-tropical.mp4" type="video/mp4" />
+  <video autoplay muted loop playsinline class="bg" poster="/videos/hero-poster.jpg" preload="metadata" id="hero-vid">
+    {/* src is set by the inline script below so phones load the light 720p file
+        and desktops the full 1080p one — a single download, never both. */}
+    <source id="hero-src" type="video/mp4" />
   </video>
+  <script is:inline>
+    (function () {
+      var s = document.getElementById('hero-src');
+      if (!s) return;
+      s.src = window.matchMedia('(max-width: 767px)').matches
+        ? '/videos/hero-tropical-mobile.mp4'
+        : '/videos/hero-tropical.mp4';
+      var v = document.getElementById('hero-vid');
+      v.load();
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    })();
+  </script>
   <div class="grad-v" aria-hidden="true"></div>
   <div class="grad-h" aria-hidden="true"></div>
 
