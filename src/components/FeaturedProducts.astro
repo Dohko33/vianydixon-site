@@ -23,7 +23,7 @@ const products = [
     href: '/collections/caps',
     fit: 'contain',
     colors: [
-      { name: 'Navy',  hex: '#14304a', img: '/images/cap-navy-product.webp' },
+      { name: 'Navy',  hex: '#14304a', img: '/images/cap-navy-lifestyle.webp', fit: 'cover' },
       { name: 'White', hex: '#f4f4f2', img: '/images/cap-white-product.webp' },
       { name: 'Sky',   hex: '#7fb6d6', img: '/images/cap-sky-product.webp' },
       { name: 'Black', hex: '#1a1a1a', img: '/images/cap-black-product.webp' },
@@ -50,11 +50,12 @@ const products = [
           {/* Swipeable variation gallery. The scroller sits inside a non-scrolling
               .media wrapper so badge / heart / arrows stay anchored (they must NOT
               be children of the scroll container, or they slide away with it). */}
-          <div class={`media ${p.fit === 'cover' ? 'cover' : 'contain'}`}>
+          <div class="media">
             <div class="gallery" data-gallery={p.id}>
               {p.colors.map((c) => (
                 <div class="slide">
-                  <img src={c.img} alt={`${p.title} — ${c.name}`} loading="lazy" />
+                  <img src={c.img} alt={`${p.title} — ${c.name}`} loading="lazy"
+                       class={(c.fit || p.fit) === 'cover' ? 'fit-cover' : 'fit-contain'} />
                 </div>
               ))}
             </div>
@@ -173,8 +174,9 @@ const products = [
   }
   .gallery::-webkit-scrollbar { display: none; }
   .slide { flex: 0 0 100%; scroll-snap-align: start; position: relative; }
-  .slide img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
-  .media.cover .slide img { object-fit: cover; padding: 0; }
+  .slide img { width: 100%; height: 100%; }
+  .slide img.fit-contain { object-fit: contain; padding: 14px; }
+  .slide img.fit-cover { object-fit: cover; padding: 0; }
 
   .badge {
     position: absolute; top: 16px; left: 16px; z-index: 2; padding: 7px 13px;
