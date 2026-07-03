@@ -26,9 +26,13 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/logo-fish.png" />
 
-  <!-- Fontshare: Zodiak (serif) + General Sans -->
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+  <!-- Self-hosted fonts (@font-face in global.css). Preload the two most-used
+       above the fold so text swaps in fast without the Fontshare round-trip. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/zodiak-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/general-sans-400.woff2" crossorigin />
+  {heroOverlay && (
+    <link rel="preload" as="image" href="/videos/hero-poster.jpg" fetchpriority="high" />
+  )}
 
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
