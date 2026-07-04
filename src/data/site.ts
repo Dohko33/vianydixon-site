@@ -8,8 +8,8 @@ export const SITE = {
 
   // Contact — Honduras-based ops
   whatsapp: {
-    number: '50494000000',         // PLACEHOLDER — update with real WhatsApp number
-    displayName: '+504 9400 0000',
+    number: '50489301305',
+    displayName: '+504 8930 1305',
     defaultMessage: 'Hola, me interesa la línea VIANY.DIXON',
   },
   email: 'hello@vianydixon.com',
