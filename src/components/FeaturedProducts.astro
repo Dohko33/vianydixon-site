@@ -7,7 +7,7 @@ const products = [
     badge: 'Bestseller', badgeStyle: 'accent',
     category: 'Footwear',
     title: 'Crystal Slip-On',
-    href: '/collections/shoes',
+    href: '/#collections',
     fit: 'cover',
     colors: [
       { name: 'White',  hex: '#f4f4f2', img: '/images/shoe-white-editorial.jpg' },
@@ -20,7 +20,7 @@ const products = [
     badge: 'New', badgeStyle: 'dark',
     category: 'Caps',
     title: 'Fish Mark Trucker',
-    href: '/collections/caps',
+    href: '/#collections',
     fit: 'contain',
     colors: [
       { name: 'Navy',  hex: '#14304a', img: '/images/cap-navy-product.webp' },
@@ -32,7 +32,7 @@ const products = [
 ];
 ---
 
-<section class="vd-section" style="background:#FBF7EF">
+<section id="featured" class="vd-section" style="background:#FBF7EF; scroll-margin-top:80px">
   <div class="vd-container">
     <div class="head">
       <div>
@@ -83,7 +83,7 @@ const products = [
                 ))}
               </div>
               <span class="count">{p.colors.length} colors</span>
-              <a href={p.href} class="shop">View
+              <a href="/#collections" class="shop">View
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             </div>

@@ -32,11 +32,11 @@ export const SITE = {
 
   // Navigation — replicates Shopify header exactly
   nav: [
-    { label: 'Swim', href: '/collections/swim' },
-    { label: 'Apparel', href: '/collections/apparel' },
-    { label: 'Caps', href: '/collections/caps' },
-    { label: 'Footwear', href: '/collections/shoes' },
-    { label: 'Accessories', href: '/collections/accessories' },
+    { label: 'Swim', href: '/#collections' },
+    { label: 'Apparel', href: '/#collections' },
+    { label: 'Caps', href: '/#collections' },
+    { label: 'Footwear', href: '/#collections' },
+    { label: 'Accessories', href: '/#collections' },
     { label: 'About Us', href: '/about', accent: true },
   ],
 };
