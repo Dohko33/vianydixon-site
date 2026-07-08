@@ -31,8 +31,8 @@ export const SITE = {
     {
       name: 'Door Of Confidence',
       venue: 'by Taisha Matute',
-      address: 'Roatán, Bay Islands, Honduras',
-      mapsUrl: 'https://maps.google.com/?q=Door+Of+Confidence+Taisha+Matute+Roatan',
+      address: 'French Harbour, Roatán, Bay Islands, Honduras',
+      mapsUrl: 'https://maps.google.com/?q=Door+Of+Confidence+French+Harbour+Roatan+Honduras',
     },
   ],
 
