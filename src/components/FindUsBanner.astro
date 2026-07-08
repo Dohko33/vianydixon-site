@@ -9,6 +9,14 @@ const locations = [
     logo: '/images/roatan-thing-logo.png',
     mapsUrl: 'https://maps.google.com/?q=Kimpton+Grand+Roatan+Resort+Spa',
   },
+  {
+    name: 'Door Of Confidence',
+    at: 'by Taisha Matute',
+    address: 'Roatán, Bay Islands, Honduras',
+    img: '/images/loc-door-of-confidence.webp',
+    logo: '/images/door-of-confidence-logo.png',
+    mapsUrl: 'https://maps.google.com/?q=Door+Of+Confidence+Taisha+Matute+Roatan',
+  },
 ];
 ---
 
@@ -49,7 +57,7 @@ const locations = [
   .head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
   .head p { margin: 18px 0 0; font: 400 16.5px/1.6 var(--font-sans); color: #54636A; }
 
-  .grid { display: grid; grid-template-columns: minmax(0, 620px); justify-content: center; gap: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 940px; margin: 0 auto; }
   .card { background: #fff; border: 1px solid #EBE3D2; border-radius: 18px; overflow: hidden; }
   .photo { position: relative; }
   .photo > img:first-child { width: 100%; height: 230px; object-fit: cover; display: block; }

@@ -28,6 +28,12 @@ export const SITE = {
       phone: '+504 2405-1001',
       mapsUrl: 'https://maps.google.com/?q=Kimpton+Grand+Roatan+Resort+Spa',
     },
+    {
+      name: 'Door Of Confidence',
+      venue: 'by Taisha Matute',
+      address: 'Roatán, Bay Islands, Honduras',
+      mapsUrl: 'https://maps.google.com/?q=Door+Of+Confidence+Taisha+Matute+Roatan',
+    },
   ],
 
   // Navigation — replicates Shopify header exactly
