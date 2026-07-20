@@ -1,0 +1,51 @@
+---
+// Swim Edit — editorial showcase of the signature red one-piece, shot on location
+// in Roatán (Kimpton). Real product photography + a wholesale-inquiry CTA.
+import { waLink } from '../data/site';
+---
+
+<section class="vd-swim">
+  <div class="vd-container wrap">
+    <div class="photos">
+      <img class="p1" src="/images/swim-editorial-1.webp" alt="Model wearing the VIANY.DIXON red one-piece swimsuit at the Kimpton, Roatán" loading="lazy" width="780" height="1172" />
+      <img class="p2" src="/images/swim-editorial-2.webp" alt="Model in the VIANY.DIXON red one-piece on a Roatán pier" loading="lazy" width="780" height="1387" />
+    </div>
+
+    <div class="text">
+      <div class="vd-eyebrow" style="margin-bottom:18px">Signature Swim</div>
+      <h2 class="vd-h2">The Signature <em>One-Piece.</em></h2>
+      <p>Our sculpting red one-piece in quick-dry technical fabric — UPF 50+, designed in Roatán for the boat, the beach and everywhere the island takes you.</p>
+      <div class="ctas">
+        <a href={waLink('Hola, me interesa la venta por mayor de trajes de baño VIANY.DIXON')} target="_blank" rel="noopener" class="btn btn-primary" style="padding:15px 28px">
+          Wholesale Inquiry
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="/#collections" class="btn btn-dark" style="padding:15px 28px">View Collection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vd-swim { background: #fff; padding: clamp(64px, 8vw, 108px) 0; }
+  .wrap {
+    display: grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(32px, 5vw, 76px); align-items: center;
+  }
+
+  .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .photos img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 16px; display: block; }
+  .p1 { margin-top: 30px; }   /* offset stagger for editorial rhythm */
+  .p2 { margin-bottom: 30px; }
+
+  .text h2 { margin: 0; }
+  .text h2 em { font-style: italic; color: var(--color-accent); }
+  .text p { margin: 22px 0 0; max-width: 440px; font: 400 16.5px/1.65 var(--font-sans); color: var(--color-body); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+
+  @media (max-width: 899px) {
+    .wrap { grid-template-columns: 1fr; gap: 34px; }
+    .photos { order: -1; max-width: 460px; }
+    .p1, .p2 { margin: 0; }
+  }
+</style>
